@@ -1,0 +1,59 @@
+### Create an admin token - Returns a bearer token to act as a system user
+
+POST /rest/V1/integration/admin/token
+Content-Type: application/json
+
+{
+  "username": "john.smith",
+  "password": "password123"
+}
+
+### Create a guest cart - Returns a cart ID 
+
+POST /rest/V1/guest-carts
+Authorization: Bearer "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzU2NTc3OTQ4LCJleHAiOjE3NTY1ODE1NDh9.yRnZb8IAYwup4-ktaq579hf3ZaXNc5kSNy3hGJLskik"
+
+### View all options for a configurable product - This requires your admin to have the "Catalog" permission in user roles. Configure the setting in the admin app. 
+
+GET /rest/V1/configurable-products/WS12/options/all
+Authorization: Bearer eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzU2NTc3OTQ4LCJleHAiOjE3NTY1ODE1NDh9.yRnZb8IAYwup4-ktaq579hf3ZaXNc5kSNy3hGJLskik
+
+### View all options for a non configurable product - This requires your admin to have the "Catalog" permission in user roles. Configure the setting in the admin app.
+
+GET /rest/V1/products/A-TEST
+Authorization: Bearer eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzU2NTc3OTQ4LCJleHAiOjE3NTY1ODE1NDh9.yRnZb8IAYwup4-ktaq579hf3ZaXNc5kSNy3hGJLskik
+
+### Put an item in the guest cart
+
+POST /rest/V1/guest-carts/u0vHrvTkVQz9QLvJBM5NGe1wjXaf00Iu/items
+Authorization: Bearer eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzU2NTc3OTQ4LCJleHAiOjE3NTY1ODE1NDh9.yRnZb8IAYwup4-ktaq579hf3ZaXNc5kSNy3hGJLskik
+Content-Type: application/json
+
+{
+  "cartItem": {
+    "sku": "WS12",
+    "qty": 1,
+    "quote_id": "u0vHrvTkVQz9QLvJBM5NGe1wjXaf00Iu",
+    "product_option": {
+      "extension_attributes": {
+        "configurable_item_options": [
+          {
+            "option_id": "93",
+            "option_value": "50"
+          },
+          {
+            "option_id": "144",
+            "option_value": "166"
+          }
+        ]
+      }
+    }
+  }
+}
+
+### View the cart
+
+GET /rest/V1/guest-carts/u0vHrvTkVQz9QLvJBM5NGe1wjXaf00Iu
+Authorization: Bearer eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MiwiaWF0IjoxNzU2NTc3OTQ4LCJleHAiOjE3NTY1ODE1NDh9.yRnZb8IAYwup4-ktaq579hf3ZaXNc5kSNy3hGJLskik
+
+### Go to checkout - Non configurable product
